@@ -5,4 +5,4 @@ spring:
     name: patient-service
   data:
     mongodb:
-      uri: mongodb://localhost:27017/patient-db
+      uri: mongodb://localhost:27017/patients

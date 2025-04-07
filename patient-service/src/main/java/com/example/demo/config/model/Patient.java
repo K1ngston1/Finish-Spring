@@ -2,32 +2,65 @@ package com.example.demo.config.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.List;
 
 @Document(collection = "patients")
 public class Patient {
+
     @Id
     private String id;
-    private String firstName;
-    private String lastName;
-    private String email;
+    private String name;
+    private Integer age;
+    private String gender;
+    private List<String> medicalRecordIds;
 
     public Patient() {}
 
-    public Patient(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    public Patient(String name, Integer age, String gender, List<String> medicalRecordIds) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.medicalRecordIds = medicalRecordIds;
     }
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
 
-    public String getFirstName() { return firstName; }
-    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public String getId() {
+        return id;
+    }
 
-    public String getLastName() { return lastName; }
-    public void setLastName(String lastName) { this.lastName = lastName; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public List<String> getMedicalRecordIds() {
+        return medicalRecordIds;
+    }
+
+    public void setMedicalRecordIds(List<String> medicalRecordIds) {
+        this.medicalRecordIds = medicalRecordIds;
+    }
 }

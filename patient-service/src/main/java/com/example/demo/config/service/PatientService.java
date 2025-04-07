@@ -1,7 +1,6 @@
 package com.example.demo.config.service;
+
 import com.example.demo.config.model.Patient;
-import com.example.demo.config.model.Patient;
-import com.example.demo.config.repository.PatientRepository;
 import com.example.demo.config.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,6 @@
 package com.example.demo.config.controller;
 
 import com.example.demo.config.model.Patient;
-import com.example.demo.config.model.Patient;
-import com.example.demo.config.service.PatientService;
 import com.example.demo.config.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
