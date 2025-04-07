@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/doctors")
+@RequestMapping("/doctors")
 public class DoctorController {
 
     @Autowired
@@ -24,16 +24,6 @@ public class DoctorController {
     @GetMapping("/{id}")
     public Optional<Doctor> getDoctorById(@PathVariable String id) {
         return doctorService.getDoctorById(id);
-    }
-
-    @PostMapping
-    public Doctor createDoctor(@RequestBody Doctor doctor) {
-        return doctorService.createDoctor(doctor);
-    }
-
-    @PutMapping("/{id}")
-    public Doctor updateDoctor(@PathVariable String id, @RequestBody Doctor doctor) {
-        return doctorService.updateDoctor(id, doctor);
     }
 
     @DeleteMapping("/{id}")

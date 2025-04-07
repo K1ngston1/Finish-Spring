@@ -1,9 +1,9 @@
 package com.example.demo.config.service;
+
 import com.example.demo.config.model.Appointment;
 import com.example.demo.config.repository.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

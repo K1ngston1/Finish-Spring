@@ -2,7 +2,6 @@ package com.example.demo.config.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.time.LocalDateTime;
 
 @Document(collection = "appointments")
@@ -10,40 +9,57 @@ public class Appointment {
 
     @Id
     private String id;
-
     private String patientId;
     private String doctorId;
-    private LocalDateTime dateTime;
-    private String description;
-
+    private LocalDateTime date;
+    private String notes;
 
     public Appointment() {}
 
-    public Appointment(String patientId, String doctorId, LocalDateTime dateTime, String description) {
+    public Appointment(String patientId, String doctorId, LocalDateTime date, String notes) {
         this.patientId = patientId;
         this.doctorId = doctorId;
-        this.dateTime = dateTime;
-        this.description = description;
+        this.date = date;
+        this.notes = notes;
     }
 
+    public String getId() {
+        return id;
+    }
 
-    public String getId() { return id; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public void setId(String id) { this.id = id; }
+    public String getPatientId() {
+        return patientId;
+    }
 
-    public String getPatientId() { return patientId; }
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
+    }
 
-    public void setPatientId(String patientId) { this.patientId = patientId; }
+    public String getDoctorId() {
+        return doctorId;
+    }
 
-    public String getDoctorId() { return doctorId; }
+    public void setDoctorId(String doctorId) {
+        this.doctorId = doctorId;
+    }
 
-    public void setDoctorId(String doctorId) { this.doctorId = doctorId; }
+    public LocalDateTime getDate() {
+        return date;
+    }
 
-    public LocalDateTime getDateTime() { return dateTime; }
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
 
-    public void setDateTime(LocalDateTime dateTime) { this.dateTime = dateTime; }
+    public String getNotes() {
+        return notes;
+    }
 
-    public String getDescription() { return description; }
-
-    public void setDescription(String description) { this.description = description; }
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }
