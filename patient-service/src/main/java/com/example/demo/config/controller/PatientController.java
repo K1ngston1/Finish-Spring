@@ -42,4 +42,8 @@ public class PatientController {
     public void deletePatient(@PathVariable String id) {
         patientService.deletePatient(id);
     }
+
+
+
 }
+

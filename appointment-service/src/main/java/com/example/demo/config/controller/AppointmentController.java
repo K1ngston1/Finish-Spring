@@ -1,10 +1,13 @@
 package com.example.demo.config.controller;
 
+import com.example.demo.config.dto.AppointmentDetailsDTO;
 import com.example.demo.config.model.Appointment;
+import com.example.demo.config.model.Doctor;
 import com.example.demo.config.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/appointments")
@@ -17,29 +20,37 @@ public class AppointmentController {
         this.appointmentService = appointmentService;
     }
 
-    @PostMapping
-    public Appointment addAppointment(@RequestBody Appointment appointment) {
-        return appointmentService.saveAppointment(appointment);
-    }
-
-    @GetMapping
-    public List<Appointment> getAllAppointments() {
-        return appointmentService.getAllAppointments();
-    }
-
     @GetMapping("/{id}")
-    public Appointment getAppointment(@PathVariable String id) {
-        return appointmentService.getAppointmentById(id);
+    public AppointmentDetailsDTO getAppointmentDetails(@PathVariable String id) {
+        return appointmentService.getAppointmentDetailsById(id);
     }
 
-    @PutMapping("/{id}")
-    public Appointment updateAppointment(@PathVariable String id, @RequestBody Appointment appointment) {
-        appointment.setId(id);
-        return appointmentService.saveAppointment(appointment);
+
+    @GetMapping("/patients")
+    public List<Map<String, Object>> getAllPatients() {
+        return appointmentService.getAllPatients();
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteAppointment(@PathVariable String id) {
-        appointmentService.deleteAppointment(id);
+    @GetMapping("/doctors")
+    public List<Map<String, Object>> getAllDoctors() {
+        return appointmentService.getAllDoctors();
     }
+
+    @DeleteMapping("/doctors/{id}")
+    public void deleteDoctor(@PathVariable String id) {
+        appointmentService.deleteDoctor(id);
+    }
+
+    @PostMapping("/doctors")
+    public Map<String, Object> createDoctor(@RequestBody Doctor doctor) {
+        return appointmentService.createDoctor(doctor);
+    }
+
+    @PutMapping("/doctors/{id}")
+    public Map<String, Object> updateDoctor(@PathVariable String id, @RequestBody Doctor doctor) {
+        return appointmentService.updateDoctor(id, doctor);
+    }
+
+
 }
+

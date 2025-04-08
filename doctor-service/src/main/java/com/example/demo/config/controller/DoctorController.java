@@ -18,16 +18,28 @@ public class DoctorController {
 
     @GetMapping
     public List<Doctor> getAllDoctors() {
-        return doctorService.getAllDoctors();
+        return doctorService.getAllDoctors(); // Виклик методу для отримання всіх лікарів
     }
 
     @GetMapping("/{id}")
     public Optional<Doctor> getDoctorById(@PathVariable String id) {
-        return doctorService.getDoctorById(id);
+        return doctorService.getDoctorById(id); // Виклик методу для отримання лікаря за ID
     }
 
     @DeleteMapping("/{id}")
     public void deleteDoctor(@PathVariable String id) {
-        doctorService.deleteDoctor(id);
+        doctorService.deleteDoctor(id); // Виклик методу для видалення лікаря
+    }
+
+    @PostMapping
+    public Doctor addDoctor(@RequestBody Doctor doctor) {
+        return doctorService.saveDoctor(doctor); // Виклик методу для додавання лікаря
+    }
+
+    @PutMapping("/{id}")
+    public Doctor updateDoctor(@PathVariable String id, @RequestBody Doctor doctor) {
+        doctor.setId(id);
+        return doctorService.saveDoctor(doctor); // Виклик методу для оновлення лікаря
     }
 }
+
