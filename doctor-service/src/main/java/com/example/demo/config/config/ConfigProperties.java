@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
  @version 1.0.0
  @since 17.05.2025 - 23:53
 */
+
 @Component
 @ConfigurationProperties(prefix = "project")
 @RefreshScope
