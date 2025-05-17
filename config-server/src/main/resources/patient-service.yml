@@ -1,24 +1,7 @@
-server:
-  port: 8082
-
-spring:
-  application:
-    name: patient-service
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/doctors-db
 
 project:
   title: "Patient Service Project"
   description: "This is the patient microservice"
 
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-    fetch-registry: true
-    register-with-eureka: true
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
