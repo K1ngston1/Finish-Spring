@@ -1,6 +1,11 @@
 server:
 port: 8081
 
+project:
+  title: "Appointment Service Project"
+  description: "This is the appointment microservice"
+
+
 spring:
   application:
     name: appointment-service

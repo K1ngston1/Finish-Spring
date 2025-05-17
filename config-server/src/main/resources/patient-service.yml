@@ -8,6 +8,10 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/doctors-db
 
+project:
+  title: "Patient Service Project"
+  description: "This is the patient microservice"
+
 
 eureka:
   client:

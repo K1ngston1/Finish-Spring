@@ -1,6 +1,8 @@
 server:
   port: 8888
 
+
+
 spring:
   cloud:
     config:
@@ -10,3 +12,4 @@ spring:
           clone-on-start: true
   profiles:
     active: native
+
