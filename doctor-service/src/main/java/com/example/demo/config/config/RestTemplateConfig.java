@@ -1,15 +1,14 @@
 package com.example.demo.config.config;
 
-import org.springframework.cloud.client.loadbalancer.LoadBalanced; // Підключи цю бібліотеку
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class RestTemplateConfig {
-
     @Bean
-    @LoadBalanced // <<< Ось це потрібно додати
+    @LoadBalanced
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }

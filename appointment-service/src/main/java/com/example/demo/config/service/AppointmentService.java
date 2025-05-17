@@ -42,11 +42,11 @@ public class AppointmentService {
         Appointment appointment = appointmentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Appointment not found"));
 
-        String patientUrl = "http://localhost:8082/patients/" + appointment.getPatientId();
-        String doctorUrl = "http://localhost:8083/doctors/" + appointment.getDoctorId();
+        String patientUrl = "http://patient-service/patients/" + appointment.getPatientId();
+        String doctorUrl = "http://doctor-service/doctors/" + appointment.getDoctorId();
 
-        System.out.println("Getting patient details from: " + patientUrl);
-        System.out.println("Getting doctor details from: " + doctorUrl);
+        logger.info("Getting patient details from: " + patientUrl);
+        logger.info("Getting doctor details from: " + doctorUrl);
 
         Map<String, Object> patient = null;
         Map<String, Object> doctor = null;
@@ -54,13 +54,13 @@ public class AppointmentService {
         try {
             patient = restTemplate.exchange(patientUrl, HttpMethod.GET, null, new ParameterizedTypeReference<Map<String, Object>>() {}).getBody();
         } catch (Exception e) {
-            System.out.println("Error getting patient details: " + e.getMessage());
+            logger.error("Error getting patient details: " + e.getMessage());
         }
 
         try {
             doctor = restTemplate.exchange(doctorUrl, HttpMethod.GET, null, new ParameterizedTypeReference<Map<String, Object>>() {}).getBody();
         } catch (Exception e) {
-            System.out.println("Error getting doctor details: " + e.getMessage());
+            logger.error("Error getting doctor details: " + e.getMessage());
         }
 
         return new AppointmentDetailsDTO(
@@ -75,27 +75,27 @@ public class AppointmentService {
     }
 
     public List<Map<String, Object>> getAllPatients() {
-        String url = "http://localhost:8082/patients";
+        String url = "http://patient-service/patients/";
         try {
             return restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Map<String, Object>>>() {}).getBody();
         } catch (Exception e) {
-            logger.error("Error getting patients from '{}': {}", url, e.getMessage(), e);  // Логування помилки
+            logger.error("Error getting patients from '{}': {}", url, e.getMessage(), e);
             return null;
         }
     }
 
     public List<Map<String, Object>> getAllDoctors() {
-        String url = "http://localhost:8083/doctors";
+        String url = "http://doctor-service/doctors/";
         try {
             return restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Map<String, Object>>>() {}).getBody();
         } catch (Exception e) {
-            logger.error("Error getting doctors from '{}': {}", url, e.getMessage(), e);  // Логування помилки
+            logger.error("Error getting doctors from '{}': {}", url, e.getMessage(), e);
             return null;
         }
     }
 
     public Map<String, Object> createDoctor(Doctor doctor) {
-        String url = "http://localhost:8083/doctors";
+        String url = "http://doctor-service/doctors/";
         try {
             return restTemplate.exchange(url, HttpMethod.POST, new HttpEntity<>(doctor), new ParameterizedTypeReference<Map<String, Object>>() {}).getBody();
         } catch (Exception e) {
@@ -105,7 +105,7 @@ public class AppointmentService {
     }
 
     public Map<String, Object> updateDoctor(String id, Doctor doctor) {
-        String url = "http://localhost:8083/doctors/" + id;
+        String url = "http://doctor-service/doctors/" + id;
         try {
             return restTemplate.exchange(url, HttpMethod.PUT, new HttpEntity<>(doctor), new ParameterizedTypeReference<Map<String, Object>>() {}).getBody();
         } catch (Exception e) {
@@ -114,14 +114,12 @@ public class AppointmentService {
         }
     }
 
-
     public void deleteDoctor(String id) {
-        String url = "http://localhost:8083/doctors/" + id;
+        String url = "http://doctor-service/doctors/" + id;
         try {
             restTemplate.exchange(url, HttpMethod.DELETE, null, Void.class);
         } catch (Exception e) {
             logger.error("Error deleting doctor at '{}': {}", url, e.getMessage(), e);
         }
     }
-
 }

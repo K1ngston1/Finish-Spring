@@ -4,6 +4,7 @@ import com.example.demo.config.model.Patient;
 import com.example.demo.config.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -11,10 +12,12 @@ import java.util.List;
 public class PatientService {
 
     private final PatientRepository patientRepository;
+    private final RestTemplate restTemplate;
 
     @Autowired
-    public PatientService(PatientRepository patientRepository) {
+    public PatientService(PatientRepository patientRepository, RestTemplate restTemplate) {
         this.patientRepository = patientRepository;
+        this.restTemplate = restTemplate;
     }
 
     public Patient savePatient(Patient patient) {
@@ -33,5 +36,10 @@ public class PatientService {
     public void deletePatient(String id) {
         Patient patient = getPatientById(id);
         patientRepository.delete(patient);
+    }
+
+    public String getDoctorNameById(String doctorId) {
+        String url = "http://doctor-service/doctors/" + doctorId;
+        return restTemplate.getForObject(url, String.class);
     }
 }
